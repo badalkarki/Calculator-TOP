@@ -28,6 +28,11 @@ body{
 }
 .display-ui .answer, .expression {
     height: 50%;
+    display: flex;
+    align-items: center;
+    font-size: 2.5rem;
+    font-weight: 500;
+    padding: 15px;
 }
 .buttons-ui{
     width: 97%;
