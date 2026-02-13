@@ -28,6 +28,3 @@ function getNumber() {
   });
 }
 
-function getOperator() {
-    const operatorBtn = document.querySelectorAll(".")
-}

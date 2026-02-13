@@ -21,8 +21,13 @@ body{
     border-radius: 8px;
 }
 .display-ui{
+    display: flex;
+    flex-direction: column;
     height: 250px;
     width: 100%;
+}
+.display-ui .answer, .expression {
+    height: 50%;
 }
 .buttons-ui{
     width: 97%;
