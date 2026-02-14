@@ -1,5 +1,6 @@
 const numberBtns = document.querySelectorAll(".number");
 const expression = document.querySelector(".expression");
+let operators = document.querySelectorAll(".operator");
 
 function getNumber(e) {
   switch (e.target.innerText) {
@@ -23,6 +24,23 @@ function getNumber(e) {
       return 1;
     case "0":
       return 0;
+    case ".":
+      return ".";
+  }
+}
+
+function getOperator(e) {
+  switch (e.target.innerText) {
+    case "%":
+      return "%";
+    case "÷":
+      return "/";
+    case "+":
+      return "+";
+    case "—":
+      return "-";
+    case "X":
+      return "*";
   }
 }
 let numbers = [];
@@ -30,7 +48,16 @@ numberBtns.forEach((numBtn) => {
   numBtn.addEventListener("click", (e) => {
     numbers.push(getNumber(e));
     console.log(numbers);
-    expression.innerText = `${numbers.join("")}`;
+    expression.innerText = numbers.join("");
   });
 });
 
+// let sign = [];
+operators.forEach((operator) => {
+  // console.log(operator);
+  operator.addEventListener("click", (e) => {
+    // sign.push(getOperator(e));
+    // console.log(sign);
+    expression.innerText = getOperator(e);
+  });
+});
