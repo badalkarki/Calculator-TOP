@@ -46,10 +46,12 @@ numberBtns.forEach((numBtn) => {
   });
 });
 
-function displayClear(){
+function displayClear() {
   const AC = document.querySelector(".clear-all");
   AC.addEventListener("click", () => {
-    expression.innerText = ""
-  })
+    expression.innerText = "";
+    numbers.splice(0, numbers.length);
+    console.log(numbers);
+  });
 }
-displayClear()
+displayClear();
