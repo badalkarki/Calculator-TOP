@@ -25,8 +25,12 @@ function getNumber(e) {
       return 0;
   }
 }
+let numbers = [];
 numberBtns.forEach((numBtn) => {
   numBtn.addEventListener("click", (e) => {
-    expression.innerText = getNumber(e);
+    numbers.push(getNumber(e));
+    console.log(numbers);
+    expression.innerText = `${numbers.join("")}`;
   });
 });
+

@@ -9,6 +9,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: rgb(5, 31, 41);
 }
 .calc-ui{
     width: 414px;
