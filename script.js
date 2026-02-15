@@ -49,9 +49,20 @@ numberBtns.forEach((numBtn) => {
 function displayClear() {
   const AC = document.querySelector(".clear-all");
   AC.addEventListener("click", () => {
-    expression.innerText = "";
     numbers.splice(0, numbers.length);
+    expression.innerText = "";
     console.log(numbers);
   });
 }
 displayClear();
+
+function deleteItem () {
+  const DEL = document.querySelector(".delete");
+  DEL.addEventListener("click", () => {
+    numbers.pop();
+    expression.innerText = numbers.join("");
+    console.log(numbers)
+  })
+}
+deleteItem()
+
