@@ -1,5 +1,6 @@
 const numberBtns = document.querySelectorAll(".number");
 const expression = document.querySelector(".expression");
+let values = "";
 function getNumber(e) {
   switch (e.target.innerText) {
     case "9":
@@ -42,7 +43,8 @@ numberBtns.forEach((numBtn) => {
   numBtn.addEventListener("click", (e) => {
     numbers.push(getNumber(e));
     console.log(numbers);
-    expression.innerText = numbers.join("");
+    values = numbers.join("");
+    expression.innerText = values;
   });
 });
 
@@ -56,13 +58,26 @@ function displayClear() {
 }
 displayClear();
 
-function deleteItem () {
+function deleteItem() {
   const DEL = document.querySelector(".delete");
   DEL.addEventListener("click", () => {
     numbers.pop();
-    expression.innerText = numbers.join("");
-    console.log(numbers)
-  })
+    values = numbers.join("");
+    expression.innerText = values;
+    console.log(numbers);
+  });
 }
-deleteItem()
 
+deleteItem();
+const equate = document.querySelector(".equals");
+equate.addEventListener("click", (e) => operate());
+
+function operate() {
+  let[a, b] = values.split("+");
+  if (numbers.includes("+")) {
+    return console.log(add(+a, +b));
+  }
+}
+function add(a, b) {
+  return a + b;
+}
