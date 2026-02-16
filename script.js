@@ -99,6 +99,7 @@ function operate() {
     numbers.push(divide(+a,+b));
     return (expression.innerText = divide(+a, +b));
   } else if (numbers.includes("%")) {
+    [a, b] = values.split("%");
     numbers.splice(0, numbers.length);
     expression.innerText = "";
     numbers.push(percent(+a));
