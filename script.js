@@ -75,19 +75,34 @@ equate.addEventListener("click", (e) => operate());
 
 function operate() {
   if (numbers.includes("+")) {
-    [a, b] = values.split("+")
-    return console.log(add(+a, +b));
+    [a, b] = values.split("+");
+    numbers.splice(0, numbers.length);
+    expression.innerText = "";
+    numbers.push(add(+a,+b));
+    return (expression.innerText = add(+a, +b));
   } else if (numbers.includes("-")) {
-    [a,b] = values.split("-");
-    return console.log(subtract(+a, +b));
+    [a, b] = values.split("-");
+    numbers.splice(0, numbers.length);
+    numbers.push(subtract(+a,+b));
+    expression.innerText = "";
+    return (expression.innerText = subtract(+a, +b));
   } else if (numbers.includes("*")) {
-    [a,b] = values.split("*");
-    return console.log(multiply(+a, +b));
+    [a, b] = values.split("*");
+    numbers.splice(0, numbers.length);
+    expression.innerText = "";
+    numbers.push(multiply(+a,+b));
+    return (expression.innerText = multiply(+a, +b));
   } else if (numbers.includes("/")) {
-    [a,b] = values.split("/");
-    return console.log(divide(+a, +b));
+    [a, b] = values.split("/");
+    numbers.splice(0, numbers.length);
+    expression.innerText = "";
+    numbers.push(divide(+a,+b));
+    return (expression.innerText = divide(+a, +b));
   } else if (numbers.includes("%")) {
-    return console.log(percent(+a));
+    numbers.splice(0, numbers.length);
+    expression.innerText = "";
+    numbers.push(percent(+a));
+    return (expression.innerText = percent(+a));
   }
 }
 function add(a, b) {
