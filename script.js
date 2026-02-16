@@ -1,6 +1,7 @@
 const numberBtns = document.querySelectorAll(".number");
 const expression = document.querySelector(".expression");
 let values = "";
+let [a, b] = [];
 function getNumber(e) {
   switch (e.target.innerText) {
     case "9":
@@ -73,14 +74,17 @@ const equate = document.querySelector(".equals");
 equate.addEventListener("click", (e) => operate());
 
 function operate() {
-  let [a, b] = values.split("+");
   if (numbers.includes("+")) {
+    [a, b] = values.split("+")
     return console.log(add(+a, +b));
   } else if (numbers.includes("-")) {
+    [a,b] = values.split("-");
     return console.log(subtract(+a, +b));
   } else if (numbers.includes("*")) {
+    [a,b] = values.split("*");
     return console.log(multiply(+a, +b));
   } else if (numbers.includes("/")) {
+    [a,b] = values.split("/");
     return console.log(divide(+a, +b));
   } else if (numbers.includes("%")) {
     return console.log(percent(+a));
