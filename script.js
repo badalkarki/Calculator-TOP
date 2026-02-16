@@ -73,11 +73,31 @@ const equate = document.querySelector(".equals");
 equate.addEventListener("click", (e) => operate());
 
 function operate() {
-  let[a, b] = values.split("+");
+  let [a, b] = values.split("+");
   if (numbers.includes("+")) {
     return console.log(add(+a, +b));
+  } else if (numbers.includes("-")) {
+    return console.log(subtract(+a, +b));
+  } else if (numbers.includes("*")) {
+    return console.log(multiply(+a, +b));
+  } else if (numbers.includes("/")) {
+    return console.log(divide(+a, +b));
+  } else if (numbers.includes("%")) {
+    return console.log(percent(+a));
   }
 }
 function add(a, b) {
   return a + b;
+}
+function subtract(a, b) {
+  return a - b;
+}
+function multiply(a, b) {
+  return a * b;
+}
+function divide(a, b) {
+  return a / b;
+}
+function percent(a) {
+  return a / 100;
 }
