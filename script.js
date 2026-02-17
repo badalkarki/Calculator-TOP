@@ -25,17 +25,23 @@ function getNumber(e) {
     case "0":
       return 0;
     case ".":
-      return ".";
+      if (!(expression.innerText.includes("."))) return ".";
+      return "";
     case "%":
-      return "%";
+      if (!(expression.innerText.includes("%"))) return "%";
+      return ""
     case "÷":
-      return "/";
+      if (!(expression.innerText.includes("/"))) return "/";
+      return ""
     case "+":
-      return "+";
+      if (!(expression.innerText.includes("+"))) return "+";
+      return ""
     case "—":
-      return "-";
+      if (!(expression.innerText.includes("-"))) return "-";
+      return ""
     case "X":
-      return "*";
+      if (!(expression.innerText.includes("*"))) return "*";
+      return ""
   }
 }
 
@@ -72,8 +78,19 @@ deleteItem();
 
 const equate = document.querySelector(".equals");
 equate.addEventListener("click", (e) => {
-  if(numbers[numbers.length - 1] == 0 || numbers[numbers.length - 1] == 1 || numbers[numbers.length - 1] == 2 || numbers[numbers.length - 1] == 3 || numbers[numbers.length - 1] == 4 || numbers[numbers.length - 1] == 5 ||numbers[numbers.length - 1] == 6 ||numbers[numbers.length - 1] == 7 ||numbers[numbers.length - 1] == 8 || (numbers[numbers.length - 1] == 9)  ){
-    operate()
+  if (
+    numbers[numbers.length - 1] == 0 ||
+    numbers[numbers.length - 1] == 1 ||
+    numbers[numbers.length - 1] == 2 ||
+    numbers[numbers.length - 1] == 3 ||
+    numbers[numbers.length - 1] == 4 ||
+    numbers[numbers.length - 1] == 5 ||
+    numbers[numbers.length - 1] == 6 ||
+    numbers[numbers.length - 1] == 7 ||
+    numbers[numbers.length - 1] == 8 ||
+    numbers[numbers.length - 1] == 9
+  ) {
+    operate();
   }
 });
 
@@ -82,25 +99,25 @@ function operate() {
     [a, b] = values.split("+");
     numbers.splice(0, numbers.length);
     expression.innerText = "";
-    numbers.push(add(+a,+b));
+    numbers.push(add(+a, +b));
     return (expression.innerText = add(+a, +b));
   } else if (numbers.includes("-")) {
     [a, b] = values.split("-");
     numbers.splice(0, numbers.length);
-    numbers.push(subtract(+a,+b));
+    numbers.push(subtract(+a, +b));
     expression.innerText = "";
     return (expression.innerText = subtract(+a, +b));
   } else if (numbers.includes("*")) {
     [a, b] = values.split("*");
     numbers.splice(0, numbers.length);
     expression.innerText = "";
-    numbers.push(multiply(+a,+b));
+    numbers.push(multiply(+a, +b));
     return (expression.innerText = multiply(+a, +b));
   } else if (numbers.includes("/")) {
     [a, b] = values.split("/");
     numbers.splice(0, numbers.length);
     expression.innerText = "";
-    numbers.push(divide(+a,+b));
+    numbers.push(divide(+a, +b));
     return (expression.innerText = divide(+a, +b));
   } else if (numbers.includes("%")) {
     [a, b] = values.split("%");
@@ -110,6 +127,8 @@ function operate() {
     return (expression.innerText = percent(+a));
   }
 }
+
+// Simple calculator operations
 function add(a, b) {
   return a + b;
 }
