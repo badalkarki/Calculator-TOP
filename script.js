@@ -68,10 +68,14 @@ function deleteItem() {
     console.log(numbers);
   });
 }
-
 deleteItem();
+
 const equate = document.querySelector(".equals");
-equate.addEventListener("click", (e) => operate());
+equate.addEventListener("click", (e) => {
+  if(numbers[numbers.length - 1] == 0 || numbers[numbers.length - 1] == 1 || numbers[numbers.length - 1] == 2 || numbers[numbers.length - 1] == 3 || numbers[numbers.length - 1] == 4 || numbers[numbers.length - 1] == 5 ||numbers[numbers.length - 1] == 6 ||numbers[numbers.length - 1] == 7 ||numbers[numbers.length - 1] == 8 || (numbers[numbers.length - 1] == 9)  ){
+    operate()
+  }
+});
 
 function operate() {
   if (numbers.includes("+")) {
