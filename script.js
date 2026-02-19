@@ -25,37 +25,40 @@ function getNumber(e) {
     case "0":
       return 0;
     case ".":
-      if (!(expression.innerText.includes("."))) return ".";
+      if (!expression.innerText.includes(".")) return ".";
       return "";
     case "%":
-      if (!(expression.innerText.includes("%"))) return "%";
-      return ""
+      if (!expression.innerText.includes("%")) return "%";
+      return "";
     case "÷":
-      if (!(expression.innerText.includes("/"))) return "/";
-      return ""
+      if (!expression.innerText.includes("/")) return "/";
+      return "";
     case "+":
-      if (!(expression.innerText.includes("+"))) return "+";
-      return ""
+      if (!expression.innerText.includes("+")) return "+";
+      return "";
     case "—":
-      if (!(expression.innerText.includes("-"))) return "-";
-      return ""
+      if (!expression.innerText.includes("-")) return "-";
+      return "";
     case "X":
-      if (!(expression.innerText.includes("*"))) return "*";
-      return ""
+      if (!expression.innerText.includes("*")) return "*";
+      return "";
   }
+}
+
+function displayCharacter(e) {
+  numbers.push(getNumber(e));
+  console.log(numbers);
+  values = numbers.join("");
+  expression.innerText = values;
+  console.log(a);
 }
 
 let numbers = [];
 numberBtns.forEach((numBtn) => {
-  numBtn.addEventListener("click", (e) => {
-    numbers.push(getNumber(e));
-    console.log(numbers);
-    values = numbers.join("");
-    expression.innerText = values;
-  });
+  numBtn.addEventListener("click", (e) => {displayCharacter(e)});
 });
 
-function displayClear() {
+function clearDisplay() {
   const AC = document.querySelector(".clear-all");
   AC.addEventListener("click", () => {
     numbers.splice(0, numbers.length);
@@ -63,7 +66,7 @@ function displayClear() {
     console.log(numbers);
   });
 }
-displayClear();
+clearDisplay();
 
 function deleteItem() {
   const DEL = document.querySelector(".delete");
@@ -88,7 +91,8 @@ equate.addEventListener("click", (e) => {
     numbers[numbers.length - 1] == 6 ||
     numbers[numbers.length - 1] == 7 ||
     numbers[numbers.length - 1] == 8 ||
-    numbers[numbers.length - 1] == 9
+    numbers[numbers.length - 1] == 9 ||
+    numbers[numbers.length - 1] == "%"
   ) {
     operate();
   }
