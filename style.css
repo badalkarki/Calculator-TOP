@@ -29,6 +29,7 @@ body{
     height: 250px;
     width: 100%;
     border-bottom: 2px solid rgb(59, 58, 58);
+    text-overflow: clip;
 }
 .display-ui .answer, .expression {
     height: 50%;
@@ -37,6 +38,7 @@ body{
     font-size: 2.5rem;
     font-weight: 500;
     padding: 15px;
+    text-overflow: clip;
 }
 .buttons-ui{
     width: 97%;

@@ -29,19 +29,19 @@ function getNumber(event) {
       return "";
     case "%":
       if (!expression.innerText.includes("%")) return "%";
-      return "";
+      break;
     case "/":
       if (!expression.innerText.includes("/")) return "/";
-      return "";
+      break;
     case "+":
       if (!expression.innerText.includes("+")) return "+";
-      return "";
+      break;
     case "-":
       if (!expression.innerText.includes("-")) return "-";
-      return "";
+      break
     case "*":
       if (!expression.innerText.includes("*")) return "*";
-      return "";
+      break
   }
 }
 
@@ -86,7 +86,7 @@ function deleteItem() {
 }
 
 const DEL = document.querySelector(".delete");
-DEL.addEventListener("click", () => {});
+DEL.addEventListener("click", () => deleteItem());
 
 deleteItem();
 
