@@ -2,8 +2,8 @@ const numberBtns = document.querySelectorAll(".number");
 const expression = document.querySelector(".expression");
 let values = "";
 let [a, b] = [];
-function getNumber(e) {
-  switch (e.target.innerText) {
+function getNumber(event) {
+  switch (event) {
     case "9":
       return 9;
     case "8":
@@ -30,32 +30,43 @@ function getNumber(e) {
     case "%":
       if (!expression.innerText.includes("%")) return "%";
       return "";
-    case "÷":
+    case "/":
       if (!expression.innerText.includes("/")) return "/";
       return "";
     case "+":
       if (!expression.innerText.includes("+")) return "+";
       return "";
-    case "—":
+    case "-":
       if (!expression.innerText.includes("-")) return "-";
       return "";
-    case "X":
+    case "*":
       if (!expression.innerText.includes("*")) return "*";
       return "";
   }
 }
 
-function displayCharacter(e) {
-  numbers.push(getNumber(e));
+function displayCharacter(event) {
+  numbers.push(getNumber(event));
   console.log(numbers);
   values = numbers.join("");
   expression.innerText = values;
-  console.log(a);
 }
 
 let numbers = [];
 numberBtns.forEach((numBtn) => {
-  numBtn.addEventListener("click", (e) => {displayCharacter(e)});
+  numBtn.addEventListener("click", (e) => displayCharacter(e.target.innerText));
+});
+document.addEventListener("keydown", (e) => {
+  if (e.key == "Enter") {
+    console.log(operate());
+    operate();
+  } else if (e.key == "Backspace") {
+    console.log(e.key);
+    deleteItem();
+  } else {
+    console.log(e.key);
+    displayCharacter(e.key);
+  }
 });
 
 function clearDisplay() {
@@ -67,16 +78,16 @@ function clearDisplay() {
   });
 }
 clearDisplay();
-
 function deleteItem() {
-  const DEL = document.querySelector(".delete");
-  DEL.addEventListener("click", () => {
-    numbers.pop();
-    values = numbers.join("");
-    expression.innerText = values;
-    console.log(numbers);
-  });
+  numbers.pop();
+  values = numbers.join("");
+  expression.innerText = values;
+  console.log(numbers);
 }
+
+const DEL = document.querySelector(".delete");
+DEL.addEventListener("click", () => {});
+
 deleteItem();
 
 const equate = document.querySelector(".equals");
