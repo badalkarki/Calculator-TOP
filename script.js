@@ -1,5 +1,6 @@
 const numberBtns = document.querySelectorAll(".number");
 const expression = document.querySelector(".expression");
+const operators = document.querySelectorAll(".operators");
 let values = "";
 let [a, b] = [];
 function getNumber(event) {
@@ -27,6 +28,11 @@ function getNumber(event) {
     case ".":
       if (!expression.innerText.includes(".")) return ".";
       return "";
+  }
+}
+
+function getOperator(event) {
+  switch (event) {
     case "%":
       if (!expression.innerText.includes("%")) return "%";
       break;
@@ -38,11 +44,17 @@ function getNumber(event) {
       break;
     case "-":
       if (!expression.innerText.includes("-")) return "-";
-      break
+      break;
     case "*":
       if (!expression.innerText.includes("*")) return "*";
-      break
+      break;
   }
+}
+function displayOperator(event){
+  numbers.push(getOperator(event));
+  console.log(numbers);
+  values = numbers.join("");
+  expression.innerText = values;
 }
 
 function displayCharacter(event) {
@@ -56,6 +68,10 @@ let numbers = [];
 numberBtns.forEach((numBtn) => {
   numBtn.addEventListener("click", (e) => displayCharacter(e.target.innerText));
 });
+
+operators.forEach((operator) => {
+  operator.addEventListener("click", (e) => displayOperator(e.target.innerText));
+})
 document.addEventListener("keydown", (e) => {
   if (e.key == "Enter") {
     console.log(operate());
