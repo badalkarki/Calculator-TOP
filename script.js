@@ -27,6 +27,7 @@ function getNumber(event) {
       return 0;
     case ".":
       if (!expression.innerText.includes(".")) return ".";
+    default:
       return "";
   }
 }
@@ -35,23 +36,20 @@ function getOperator(event) {
   switch (event) {
     case "%":
       if (!expression.innerText.includes("%")) return "%";
-      break;
     case "/":
       if (!expression.innerText.includes("/")) return "/";
-      break;
     case "+":
       if (!expression.innerText.includes("+")) return "+";
-      break;
     case "-":
       if (!expression.innerText.includes("-")) return "-";
-      break;
     case "*":
       if (!expression.innerText.includes("*")) return "*";
-      break;
+    default:
+      return [];
   }
 }
-function displayOperator(event){
-  numbers.push(getOperator(event));
+function displayOperator(event) {
+  !numbers.length === 0 ? numbers.push(getOperator(event)): console.log("no");
   console.log(numbers);
   values = numbers.join("");
   expression.innerText = values;
@@ -62,16 +60,23 @@ function displayCharacter(event) {
   console.log(numbers);
   values = numbers.join("");
   expression.innerText = values;
+  return numbers;
 }
 
 let numbers = [];
 numberBtns.forEach((numBtn) => {
   numBtn.addEventListener("click", (e) => displayCharacter(e.target.innerText));
 });
+function listenDisplayOperator() {
+  console.log(numbers);
+  operators.forEach((operator) => {
+    operator.addEventListener("click", (e) =>
+      displayOperator(e.target.innerText),
+    );
+  });
+}
+listenDisplayOperator();
 
-operators.forEach((operator) => {
-  operator.addEventListener("click", (e) => displayOperator(e.target.innerText));
-})
 document.addEventListener("keydown", (e) => {
   if (e.key == "Enter") {
     console.log(operate());
