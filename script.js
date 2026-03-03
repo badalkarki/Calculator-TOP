@@ -1,5 +1,5 @@
 const numberBtns = document.querySelectorAll(".numbers");
-const expression = document.querySelector(".expression");
+let expression = document.querySelector(".expression");
 const operators = document.querySelectorAll(".operators");
 let num1 = "";
 let num2 = "";
@@ -33,55 +33,60 @@ function getNumber(event) {
       if (!expression.innerText.includes(".")) return ".";
     default:
       return "";
+    }
+  }
+  function displayFirstNumber(number) {
+    firstDigitsArr.push(getNumber(number));
+    num1 = firstDigitsArr.join("");
+    console.log(num1);
+    expression.innerText = +num1;
+  }
+  function displaySecondNumber(number) {
+    secondDigitsArr.push(getNumber(number));
+    num2 = secondDigitsArr.join("");
+    console.log(num2);
+    expression.innerText = num2;
+  }
+  
+  let firstDigitsArr = [];
+  let secondDigitsArr = [];
+  numberBtns.forEach((numBtn) => {
+    numBtn.addEventListener("click", (e) => {
+      displayFirstNumber(e.target.innerText);
+      operator == "" ? "" : displaySecondNumber(e.target.innerText);
+      // console.log(num1, typeof num1);
+    });
+  });
+  
+
+function getOperator(event) {
+  switch (event) {
+    case "%":
+      return "%";
+    case "/":
+      return "/";
+    case "+":
+      return "+";
+    case "-":
+      return "-";
+    case "*":
+      return "*";
+    default:
+      return "";
   }
 }
-
-// function getOperator(event) {
-//   switch (event) {
-//     case "%":
-//       if (!expression.innerText.includes("%")) return "%";
-//     case "/":
-//       if (!expression.innerText.includes("/")) return "/";
-//     case "+":
-//       if (!expression.innerText.includes("+")) return "+";
-//     case "-":
-//       if (!expression.innerText.includes("-")) return "-";
-//     case "*":
-//       if (!expression.innerText.includes("*")) return "*";
-//     default:
-//       return [];
-//   }
-// }
-// function displayOperator(event) {
-//   !numbers.length === 0 ? numbers.push(getOperator(event)) : console.log("no");
-//   console.log(numbers);
-//   values = numbers.join("");
-//   expression.innerText = values;
-// }
-
-let firstDigitsArr = [];
-function displayNumber(event) {
-  firstDigitsArr.push(getNumber(event));
-  num1 = firstDigitsArr.join("");
-  expression.innerText = +num1;
+function displayOperator(sign) {
+  operator = getOperator(sign);
+  console.log(operator);
+  expression.innerText = num1 + operator;
 }
 
-// let numbers = [];
-numberBtns.forEach((numBtn) => {
-  numBtn.addEventListener("click", (e) => {
-    displayNumber(e.target.innerText);
-    console.log(num1, typeof num1);
-  });
+operators.forEach((operator) => {
+  operator.addEventListener("click", (e) =>
+    displayOperator(e.target.innerText),
+  );
 });
-// function listenDisplayOperator() {
-//   console.log(numbers);
-//   operators.forEach((operator) => {
-//     operator.addEventListener("click", (e) =>
-//       displayOperator(e.target.innerText),
-//     );
-//   });
-// }
-// listenDisplayOperator();
+
 
 // document.addEventListener("keydown", (e) => {
 //   if (e.key == "Enter") {
