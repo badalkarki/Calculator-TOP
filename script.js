@@ -4,8 +4,6 @@ const operators = document.querySelectorAll(".operators");
 let num1 = "";
 let num2 = "";
 let operator = "";
-// console.log(typeof num1);
-// console.log(`1 is ${num1},\n 2 is ${num2},\n operator is ${operator}`);
 //
 function getNumber(event) {
   switch (event) {
@@ -33,31 +31,30 @@ function getNumber(event) {
       if (!expression.innerText.includes(".")) return ".";
     default:
       return "";
-    }
   }
-  function displayFirstNumber(number) {
-    firstDigitsArr.push(getNumber(number));
-    num1 = firstDigitsArr.join("");
-    console.log(num1);
-    expression.innerText = +num1;
-  }
-  function displaySecondNumber(number) {
-    secondDigitsArr.push(getNumber(number));
-    num2 = secondDigitsArr.join("");
-    console.log(num2);
-    expression.innerText = num2;
-  }
-  
-  let firstDigitsArr = [];
-  let secondDigitsArr = [];
-  numberBtns.forEach((numBtn) => {
-    numBtn.addEventListener("click", (e) => {
-      displayFirstNumber(e.target.innerText);
-      operator == "" ? "" : displaySecondNumber(e.target.innerText);
-      // console.log(num1, typeof num1);
-    });
+}
+function displayFirstNumber(number) {
+  firstDigitsArr.push(getNumber(number));
+  num1 = firstDigitsArr.join("");
+  console.log(num1);
+  expression.innerText = +num1;
+}
+function displaySecondNumber(number) {
+  secondDigitsArr.push(getNumber(number));
+  num2 = secondDigitsArr.join("");
+  console.log(num2);
+  expression.innerText = num2;
+}
+
+let firstDigitsArr = [];
+let secondDigitsArr = [];
+numberBtns.forEach((numBtn) => {
+  numBtn.addEventListener("click", (e) => {
+    displayFirstNumber(e.target.innerText);
+    operator == "" ? "" : displaySecondNumber(e.target.innerText);
+    // console.log(num1, typeof num1);
   });
-  
+});
 
 function getOperator(event) {
   switch (event) {
@@ -87,7 +84,6 @@ operators.forEach((operator) => {
   );
 });
 
-
 // document.addEventListener("keydown", (e) => {
 //   if (e.key == "Enter") {
 //     console.log(operate());
@@ -101,15 +97,17 @@ operators.forEach((operator) => {
 //   }
 // });
 
-// function clearDisplay() {
-//   const AC = document.querySelector(".clear-all");
-//   AC.addEventListener("click", () => {
-//     numbers.splice(0, numbers.length);
-//     expression.innerText = "";
-//     console.log(numbers);
-//   });
-// }
-// clearDisplay();
+function clearDisplay() {
+  const AC = document.querySelector(".clear-all");
+  AC.addEventListener("click", () => {
+    firstDigitsArr = [];
+    num1 = "";
+    operator = "";
+    num2 = "";
+    expression.innerText = "";
+  });
+}
+clearDisplay();
 // function deleteItem() {
 //   numbers.pop();
 //   values = numbers.join("");
