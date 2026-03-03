@@ -36,13 +36,13 @@ function getNumber(event) {
 function displayFirstNumber(number) {
   firstDigitsArr.push(getNumber(number));
   num1 = firstDigitsArr.join("");
-  console.log(num1);
-  expression.innerText = +num1;
+  console.log("num1 is " + num1);
+  expression.innerText = num1;
 }
 function displaySecondNumber(number) {
   secondDigitsArr.push(getNumber(number));
   num2 = secondDigitsArr.join("");
-  console.log(num2);
+  console.log("num2 is " + num2);
   expression.innerText = num2;
 }
 
@@ -50,8 +50,7 @@ let firstDigitsArr = [];
 let secondDigitsArr = [];
 numberBtns.forEach((numBtn) => {
   numBtn.addEventListener("click", (e) => {
-    displayFirstNumber(e.target.innerText);
-    operator == "" ? "" : displaySecondNumber(e.target.innerText);
+    operator == "" ? displayFirstNumber(e.target.innerText) : displaySecondNumber(e.target.innerText);
     // console.log(num1, typeof num1);
   });
 });
@@ -74,7 +73,7 @@ function getOperator(event) {
 }
 function displayOperator(sign) {
   operator = getOperator(sign);
-  console.log(operator);
+  console.log("operator is: " + operator);
   expression.innerText = num1 + operator;
 }
 
@@ -101,6 +100,7 @@ function clearDisplay() {
   const AC = document.querySelector(".clear-all");
   AC.addEventListener("click", () => {
     firstDigitsArr = [];
+    secondDigitsArr = [];
     num1 = "";
     operator = "";
     num2 = "";
@@ -109,14 +109,19 @@ function clearDisplay() {
 }
 clearDisplay();
 // function deleteItem() {
-//   numbers.pop();
-//   values = numbers.join("");
-//   expression.innerText = values;
-//   console.log(numbers);
+//   const DEL = document.querySelector(".delete");
+//   DEL.addEventListener("click", () => {
+//     firstDigitsArr.pop();
+//     secondDigitsArr.pop();
+//     console.log(firstDigitsArr);
+//     console.log(secondDigitsArr);
+//     num1 = firstDigitsArr.join("");
+//     num2 = secondDigitsArr.join("");
+//     console.log(num1);
+//     console.log(num2)
+//     expression.innerText = num1 + operator
+//   });
 // }
-
-// const DEL = document.querySelector(".delete");
-// DEL.addEventListener("click", () => deleteItem());
 
 // deleteItem();
 
