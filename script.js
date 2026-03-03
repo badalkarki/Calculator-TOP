@@ -1,8 +1,12 @@
-const numberBtns = document.querySelectorAll(".number");
+const numberBtns = document.querySelectorAll(".numbers");
 const expression = document.querySelector(".expression");
 const operators = document.querySelectorAll(".operators");
-let values = "";
-let [a, b] = [];
+let num1 = " ";
+let num2 = "";
+let operator = "";
+console.log(typeof num1)
+// console.log(`1 is ${num1},\n 2 is ${num2},\n operator is ${operator}`);
+//
 function getNumber(event) {
   switch (event) {
     case "9":
@@ -32,151 +36,157 @@ function getNumber(event) {
   }
 }
 
-function getOperator(event) {
-  switch (event) {
-    case "%":
-      if (!expression.innerText.includes("%")) return "%";
-    case "/":
-      if (!expression.innerText.includes("/")) return "/";
-    case "+":
-      if (!expression.innerText.includes("+")) return "+";
-    case "-":
-      if (!expression.innerText.includes("-")) return "-";
-    case "*":
-      if (!expression.innerText.includes("*")) return "*";
-    default:
-      return [];
-  }
-}
-function displayOperator(event) {
-  !numbers.length === 0 ? numbers.push(getOperator(event)): console.log("no");
-  console.log(numbers);
-  values = numbers.join("");
-  expression.innerText = values;
-}
+// function getOperator(event) {
+//   switch (event) {
+//     case "%":
+//       if (!expression.innerText.includes("%")) return "%";
+//     case "/":
+//       if (!expression.innerText.includes("/")) return "/";
+//     case "+":
+//       if (!expression.innerText.includes("+")) return "+";
+//     case "-":
+//       if (!expression.innerText.includes("-")) return "-";
+//     case "*":
+//       if (!expression.innerText.includes("*")) return "*";
+//     default:
+//       return [];
+//   }
+// }
+// function displayOperator(event) {
+//   !numbers.length === 0 ? numbers.push(getOperator(event)) : console.log("no");
+//   console.log(numbers);
+//   values = numbers.join("");
+//   expression.innerText = values;
+// }
 
-function displayCharacter(event) {
-  numbers.push(getNumber(event));
-  console.log(numbers);
-  values = numbers.join("");
-  expression.innerText = values;
-  return numbers;
-}
+// function displayCharacter(event) {
+//   numbers.push(getNumber(event));
+//   console.log(numbers);
+//   values = numbers.join("");
+//   expression.innerText = values;
+//   return numbers;
+// }
 
-let numbers = [];
+// let numbers = [];
 numberBtns.forEach((numBtn) => {
-  numBtn.addEventListener("click", (e) => displayCharacter(e.target.innerText));
-});
-function listenDisplayOperator() {
-  console.log(numbers);
-  operators.forEach((operator) => {
-    operator.addEventListener("click", (e) =>
-      displayOperator(e.target.innerText),
-    );
+  numBtn.addEventListener("click", (e) => {
+    num1 = e.target.innerText;
+    console.log(num1, typeof num1);
+
+    // displayCharacter(e.target.innerText);
   });
-}
-listenDisplayOperator();
-
-document.addEventListener("keydown", (e) => {
-  if (e.key == "Enter") {
-    console.log(operate());
-    operate();
-  } else if (e.key == "Backspace") {
-    console.log(e.key);
-    deleteItem();
-  } else {
-    console.log(e.key);
-    displayCharacter(e.key);
-  }
+  console.log(num1)
 });
+// function listenDisplayOperator() {
+//   console.log(numbers);
+//   operators.forEach((operator) => {
+//     operator.addEventListener("click", (e) =>
+//       displayOperator(e.target.innerText),
+//     );
+//   });
+// }
+// listenDisplayOperator();
 
-function clearDisplay() {
-  const AC = document.querySelector(".clear-all");
-  AC.addEventListener("click", () => {
-    numbers.splice(0, numbers.length);
-    expression.innerText = "";
-    console.log(numbers);
-  });
-}
-clearDisplay();
-function deleteItem() {
-  numbers.pop();
-  values = numbers.join("");
-  expression.innerText = values;
-  console.log(numbers);
-}
+// document.addEventListener("keydown", (e) => {
+//   if (e.key == "Enter") {
+//     console.log(operate());
+//     operate();
+//   } else if (e.key == "Backspace") {
+//     console.log(e.key);
+//     deleteItem();
+//   } else {
+//     console.log(e.key);
+//     displayCharacter(e.key);
+//   }
+// });
 
-const DEL = document.querySelector(".delete");
-DEL.addEventListener("click", () => deleteItem());
+// function clearDisplay() {
+//   const AC = document.querySelector(".clear-all");
+//   AC.addEventListener("click", () => {
+//     numbers.splice(0, numbers.length);
+//     expression.innerText = "";
+//     console.log(numbers);
+//   });
+// }
+// clearDisplay();
+// function deleteItem() {
+//   numbers.pop();
+//   values = numbers.join("");
+//   expression.innerText = values;
+//   console.log(numbers);
+// }
 
-deleteItem();
+// const DEL = document.querySelector(".delete");
+// DEL.addEventListener("click", () => deleteItem());
 
-const equate = document.querySelector(".equals");
-equate.addEventListener("click", (e) => {
-  if (
-    numbers[numbers.length - 1] == 0 ||
-    numbers[numbers.length - 1] == 1 ||
-    numbers[numbers.length - 1] == 2 ||
-    numbers[numbers.length - 1] == 3 ||
-    numbers[numbers.length - 1] == 4 ||
-    numbers[numbers.length - 1] == 5 ||
-    numbers[numbers.length - 1] == 6 ||
-    numbers[numbers.length - 1] == 7 ||
-    numbers[numbers.length - 1] == 8 ||
-    numbers[numbers.length - 1] == 9 ||
-    numbers[numbers.length - 1] == "%"
-  ) {
-    operate();
-  }
-});
+// deleteItem();
 
-function operate() {
-  if (numbers.includes("+")) {
-    [a, b] = values.split("+");
-    numbers.splice(0, numbers.length);
-    expression.innerText = "";
-    numbers.push(add(+a, +b));
-    return (expression.innerText = add(+a, +b));
-  } else if (numbers.includes("-")) {
-    [a, b] = values.split("-");
-    numbers.splice(0, numbers.length);
-    numbers.push(subtract(+a, +b));
-    expression.innerText = "";
-    return (expression.innerText = subtract(+a, +b));
-  } else if (numbers.includes("*")) {
-    [a, b] = values.split("*");
-    numbers.splice(0, numbers.length);
-    expression.innerText = "";
-    numbers.push(multiply(+a, +b));
-    return (expression.innerText = multiply(+a, +b));
-  } else if (numbers.includes("/")) {
-    [a, b] = values.split("/");
-    numbers.splice(0, numbers.length);
-    expression.innerText = "";
-    numbers.push(divide(+a, +b));
-    return (expression.innerText = divide(+a, +b));
-  } else if (numbers.includes("%")) {
-    [a, b] = values.split("%");
-    numbers.splice(0, numbers.length);
-    expression.innerText = "";
-    numbers.push(percent(+a));
-    return (expression.innerText = percent(+a));
-  }
-}
+// const equate = document.querySelector(".equals");
+// equate.addEventListener("click", (e) => {
+//   if (
+//     numbers[numbers.length - 1] == 0 ||
+//     numbers[numbers.length - 1] == 1 ||
+//     numbers[numbers.length - 1] == 2 ||
+//     numbers[numbers.length - 1] == 3 ||
+//     numbers[numbers.length - 1] == 4 ||
+//     numbers[numbers.length - 1] == 5 ||
+//     numbers[numbers.length - 1] == 6 ||
+//     numbers[numbers.length - 1] == 7 ||
+//     numbers[numbers.length - 1] == 8 ||
+//     numbers[numbers.length - 1] == 9 ||
+//     numbers[numbers.length - 1] == "%"
+//   ) {
+//     operate();
+//   }
+// });
+
+// function operate() {
+//   if (numbers.includes("+")) {
+//     [a, b] = values.split("+");
+//     numbers.splice(0, numbers.length);
+//     expression.innerText = "";
+//     numbers.push(add(+a, +b));
+//     return (expression.innerText = add(+a, +b));
+//   } else if (numbers.includes("-")) {
+//     [a, b] = values.split("-");
+//     numbers.splice(0, numbers.length);
+//     numbers.push(subtract(+a, +b));
+//     expression.innerText = "";
+//     return (expression.innerText = subtract(+a, +b));
+//   } else if (numbers.includes("*")) {
+//     [a, b] = values.split("*");
+//     numbers.splice(0, numbers.length);
+//     expression.innerText = "";
+//     numbers.push(multiply(+a, +b));
+//     return (expression.innerText = multiply(+a, +b));
+//   } else if (numbers.includes("/")) {
+//     [a, b] = values.split("/");
+//     numbers.splice(0, numbers.length);
+//     expression.innerText = "";
+//     numbers.push(divide(+a, +b));
+//     return (expression.innerText = divide(+a, +b));
+//   } else if (numbers.includes("%")) {
+//     [a, b] = values.split("%");
+//     numbers.splice(0, numbers.length);
+//     expression.innerText = "";
+//     numbers.push(percent(+a));
+//     return (expression.innerText = percent(+a));
+//   }
+// }
 
 // Simple calculator operations
-function add(a, b) {
-  return a + b;
-}
-function subtract(a, b) {
-  return a - b;
-}
-function multiply(a, b) {
-  return a * b;
-}
-function divide(a, b) {
-  return a / b;
-}
-function percent(a) {
-  return a / 100;
-}
+// function add(a, b) {
+//   return a + b;
+// }
+// function subtract(a, b) {
+//   return a - b;
+// }
+// function multiply(a, b) {
+//   return a * b;
+// }
+// function divide(a, b) {
+//   return a / b;
+// }
+// function percent(a) {
+//   return a / 100;
+// }
