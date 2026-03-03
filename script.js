@@ -1,10 +1,10 @@
 const numberBtns = document.querySelectorAll(".numbers");
 const expression = document.querySelector(".expression");
 const operators = document.querySelectorAll(".operators");
-let num1 = " ";
+let num1 = "";
 let num2 = "";
 let operator = "";
-console.log(typeof num1)
+// console.log(typeof num1);
 // console.log(`1 is ${num1},\n 2 is ${num2},\n operator is ${operator}`);
 //
 function getNumber(event) {
@@ -59,23 +59,19 @@ function getNumber(event) {
 //   expression.innerText = values;
 // }
 
-// function displayCharacter(event) {
-//   numbers.push(getNumber(event));
-//   console.log(numbers);
-//   values = numbers.join("");
-//   expression.innerText = values;
-//   return numbers;
-// }
+let firstDigitsArr = [];
+function displayNumber(event) {
+  firstDigitsArr.push(getNumber(event));
+  num1 = firstDigitsArr.join("");
+  expression.innerText = +num1;
+}
 
 // let numbers = [];
 numberBtns.forEach((numBtn) => {
   numBtn.addEventListener("click", (e) => {
-    num1 = e.target.innerText;
+    displayNumber(e.target.innerText);
     console.log(num1, typeof num1);
-
-    // displayCharacter(e.target.innerText);
   });
-  console.log(num1)
 });
 // function listenDisplayOperator() {
 //   console.log(numbers);
