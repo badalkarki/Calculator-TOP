@@ -85,19 +85,6 @@ operators.forEach((operator) => {
   );
 });
 
-// document.addEventListener("keydown", (e) => {
-//   if (e.key == "Enter") {
-//     console.log(operate());
-//     operate();
-//   } else if (e.key == "Backspace") {
-//     console.log(e.key);
-//     deleteItem();
-//   } else {
-//     console.log(e.key);
-//     displayCharacter(e.key);
-//   }
-// });
-
 function clearDisplay() {
   const AC = document.querySelector(".clear-all");
   AC.addEventListener("click", () => {
@@ -110,11 +97,12 @@ function clearDisplay() {
   });
 }
 clearDisplay();
+
 function deleteItem() {
   const DEL = document.querySelector(".delete");
   DEL.addEventListener("click", () => {
     if (num2 == "") {
-      operator == "" ? firstDigitsArr.pop() : operator = "";
+      operator == "" ? firstDigitsArr.pop() : (operator = "");
       console.log(firstDigitsArr);
       num1 = firstDigitsArr.join("");
       console.log(num1);
@@ -128,75 +116,78 @@ function deleteItem() {
     }
   });
 }
-
 deleteItem();
 
-// const equate = document.querySelector(".equals");
-// equate.addEventListener("click", (e) => {
-//   if (
-//     numbers[numbers.length - 1] == 0 ||
-//     numbers[numbers.length - 1] == 1 ||
-//     numbers[numbers.length - 1] == 2 ||
-//     numbers[numbers.length - 1] == 3 ||
-//     numbers[numbers.length - 1] == 4 ||
-//     numbers[numbers.length - 1] == 5 ||
-//     numbers[numbers.length - 1] == 6 ||
-//     numbers[numbers.length - 1] == 7 ||
-//     numbers[numbers.length - 1] == 8 ||
-//     numbers[numbers.length - 1] == 9 ||
-//     numbers[numbers.length - 1] == "%"
-//   ) {
+// document.addEventListener("keydown", (e) => {
+//   if (e.key == "Enter") {
+//     console.log(operate());
 //     operate();
+//   } else if (e.key == "Backspace") {
+//     console.log(e.key);
+//     deleteItem();
+//   } else {
+//     console.log(e.key);
+//     displayCharacter(e.key);
 //   }
 // });
 
-// function operate() {
-//   if (numbers.includes("+")) {
-//     [a, b] = values.split("+");
-//     numbers.splice(0, numbers.length);
-//     expression.innerText = "";
-//     numbers.push(add(+a, +b));
-//     return (expression.innerText = add(+a, +b));
-//   } else if (numbers.includes("-")) {
-//     [a, b] = values.split("-");
-//     numbers.splice(0, numbers.length);
-//     numbers.push(subtract(+a, +b));
-//     expression.innerText = "";
-//     return (expression.innerText = subtract(+a, +b));
-//   } else if (numbers.includes("*")) {
-//     [a, b] = values.split("*");
-//     numbers.splice(0, numbers.length);
-//     expression.innerText = "";
-//     numbers.push(multiply(+a, +b));
-//     return (expression.innerText = multiply(+a, +b));
-//   } else if (numbers.includes("/")) {
-//     [a, b] = values.split("/");
-//     numbers.splice(0, numbers.length);
-//     expression.innerText = "";
-//     numbers.push(divide(+a, +b));
-//     return (expression.innerText = divide(+a, +b));
-//   } else if (numbers.includes("%")) {
-//     [a, b] = values.split("%");
-//     numbers.splice(0, numbers.length);
-//     expression.innerText = "";
-//     numbers.push(percent(+a));
-//     return (expression.innerText = percent(+a));
-//   }
-// }
+const equate = document.querySelector(".result");
+equate.addEventListener("click", (e) => {
+    operate();
+});
 
-// Simple calculator operations
-// function add(a, b) {
-//   return a + b;
-// }
-// function subtract(a, b) {
-//   return a - b;
-// }
-// function multiply(a, b) {
-//   return a * b;
-// }
-// function divide(a, b) {
-//   return a / b;
-// }
-// function percent(a) {
-//   return a / 100;
-// }
+function operate() {
+  if (operator == "+") {
+    expression.innerText = "";
+    firstDigitsArr.splice(0, firstDigitsArr.length, add(+num1, +num2));
+    secondDigitsArr = [];
+    // console.log(firstDigitsArr, secondDigitsArr);
+    // console.log(firstDigitsArr.join());
+    num1 = firstDigitsArr.join();
+    // console.log(`num 1 is ${num1} and num2 is ${num2}`);
+    return (expression.innerText = firstDigitsArr.join());
+  }
+   else if (operator =="-") {
+    expression.innerText = "";
+    firstDigitsArr.splice(0, firstDigitsArr.length, subtract(+num1, +num2));
+    secondDigitsArr = [];
+    num1 = firstDigitsArr.join();
+    return (expression.innerText = firstDigitsArr.join());
+  } 
+  else if (operator =="*") {
+    expression.innerText = "";
+    firstDigitsArr.splice(0, firstDigitsArr.length, multiply(+num1, +num2));
+    secondDigitsArr = [];
+    num1 = firstDigitsArr.join();
+    return (expression.innerText = firstDigitsArr.join());
+  } 
+  else if (operator =="/") {
+    expression.innerText = "";
+    firstDigitsArr.splice(0, firstDigitsArr.length, divide(+num1, +num2));
+    secondDigitsArr = [];
+    num1 = firstDigitsArr.join();
+    return (expression.innerText = firstDigitsArr.join());
+  } 
+  else if (operator =="%") {
+    expression.innerText = "";
+    firstDigitsArr.splice(0, firstDigitsArr.length, percent(+num1));
+    num1 = firstDigitsArr.join();
+    return (expression.innerText = firstDigitsArr.join());
+  }
+}
+
+function add(a, b) {
+  return a + b;
+}
+function subtract(a, b) {
+  return a - b;
+}
+function multiply(a, b) {
+  return a * b;
+}
+function divide(a, b) {
+  return a / b;
+}
+function percent(a) {
+  return a / 100;
+}
