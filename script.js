@@ -127,7 +127,10 @@ deleteItem();
 //     deleteItem();
 //   } else {
 //     console.log(e.key);
-//     displayCharacter(e.key);
+//     operator == ""
+//       ? displayFirstNumber(e.key)
+//       : displaySecondNumber(e.key);
+//     displaySecondNumber(e.key);
 //   }
 // });
 
@@ -141,10 +144,7 @@ function operate() {
     expression.innerText = "";
     firstDigitsArr.splice(0, firstDigitsArr.length, add(+num1, +num2));
     secondDigitsArr = [];
-    // console.log(firstDigitsArr, secondDigitsArr);
-    // console.log(firstDigitsArr.join());
     num1 = firstDigitsArr.join();
-    // console.log(`num 1 is ${num1} and num2 is ${num2}`);
     return (expression.innerText = firstDigitsArr.join());
   }
    else if (operator =="-") {
