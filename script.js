@@ -50,7 +50,9 @@ let firstDigitsArr = [];
 let secondDigitsArr = [];
 numberBtns.forEach((numBtn) => {
   numBtn.addEventListener("click", (e) => {
-    operator == "" ? displayFirstNumber(e.target.innerText) : displaySecondNumber(e.target.innerText);
+    operator == ""
+      ? displayFirstNumber(e.target.innerText)
+      : displaySecondNumber(e.target.innerText);
     // console.log(num1, typeof num1);
   });
 });
@@ -108,22 +110,26 @@ function clearDisplay() {
   });
 }
 clearDisplay();
-// function deleteItem() {
-//   const DEL = document.querySelector(".delete");
-//   DEL.addEventListener("click", () => {
-//     firstDigitsArr.pop();
-//     secondDigitsArr.pop();
-//     console.log(firstDigitsArr);
-//     console.log(secondDigitsArr);
-//     num1 = firstDigitsArr.join("");
-//     num2 = secondDigitsArr.join("");
-//     console.log(num1);
-//     console.log(num2)
-//     expression.innerText = num1 + operator
-//   });
-// }
+function deleteItem() {
+  const DEL = document.querySelector(".delete");
+  DEL.addEventListener("click", () => {
+    if (num2 == "") {
+      operator == "" ? firstDigitsArr.pop() : operator = "";
+      console.log(firstDigitsArr);
+      num1 = firstDigitsArr.join("");
+      console.log(num1);
+      expression.innerText = num1 + operator;
+    } else {
+      secondDigitsArr.pop();
+      console.log(secondDigitsArr);
+      num2 = secondDigitsArr.join("");
+      console.log(num2);
+      expression.innerText = num2;
+    }
+  });
+}
 
-// deleteItem();
+deleteItem();
 
 // const equate = document.querySelector(".equals");
 // equate.addEventListener("click", (e) => {
