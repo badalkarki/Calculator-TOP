@@ -36,7 +36,10 @@ function getNumber(event) {
   }
 }
 function displayFirstNumber(number) {
-  firstDigitsArr.push(getNumber(number));
+  let num = "";
+  expression.innerText.length < 15 ? (num = getNumber(number)) : "";
+
+  firstDigitsArr.push(num);
   num1 = firstDigitsArr.join("");
   console.log("num1 is " + num1);
   expression.innerText = num1;
@@ -97,41 +100,43 @@ function clearDisplay() {
 }
 clearDisplay();
 
+const DEL = document.querySelector(".delete");
+DEL.addEventListener("click", () => deleteItem());
 function deleteItem() {
-  const DEL = document.querySelector(".delete");
-  DEL.addEventListener("click", () => {
-    if (num2 == "") {
-      operator == "" ? firstDigitsArr.pop() : (operator = "");
-      console.log(firstDigitsArr);
-      num1 = firstDigitsArr.join("");
-      console.log(num1);
-      expression.innerText = num1 + operator;
-    } else {
-      secondDigitsArr.pop();
-      console.log(secondDigitsArr);
-      num2 = secondDigitsArr.join("");
-      console.log(num2);
-      expression.innerText = num2;
-    }
-  });
+  if (num2 == "") {
+    operator == "" ? firstDigitsArr.pop() : (operator = "");
+    console.log(firstDigitsArr);
+    num1 = firstDigitsArr.join("");
+    console.log(num1);
+    expression.innerText = num1 + operator;
+  } else {
+    secondDigitsArr.pop();
+    console.log(secondDigitsArr);
+    num2 = secondDigitsArr.join("");
+    console.log(num2);
+    expression.innerText = num2;
+  }
 }
-deleteItem();
 
-// document.addEventListener("keydown", (e) => {
-//   if (e.key == "Enter") {
-//     console.log(operate());
-//     operate();
-//   } else if (e.key == "Backspace") {
-//     console.log(e.key);
-//     deleteItem();
-//   } else {
-//     console.log(e.key);
-//     operator == ""
-//       ? displayFirstNumber(e.key)
-//       : displaySecondNumber(e.key);
-//     displaySecondNumber(e.key);
-//   }
-// });
+document.addEventListener("keydown", (e) => {
+  if (e.key == "Enter") {
+    operate();
+  } else if (e.key == "Backspace") {
+    console.log(e.key);
+    deleteItem();
+  } else if (
+    ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"].includes(e.key)
+  ) {
+    console.log(e.key);
+    operator == "" ? displayFirstNumber(e.key) : displaySecondNumber(e.key);
+  } else if (["+", "-", "*", "/", "%"].includes(e.key)) {
+    displayOperator(e.key);
+  } else {
+    console.log(
+      "Ohh, hi why are you opening your console. You should close it common!!",
+    );
+  }
+});
 
 const equate = document.querySelector(".result");
 equate.addEventListener("click", (e) => {
@@ -144,30 +149,30 @@ function operate() {
     firstDigitsArr.splice(0, firstDigitsArr.length, add(+num1, +num2));
     secondDigitsArr = [];
     num1 = firstDigitsArr.join();
-    return (expression.innerText = firstDigitsArr.join());
+    expression.innerText = firstDigitsArr.join();
   } else if (operator == "-") {
     expression.innerText = "";
     firstDigitsArr.splice(0, firstDigitsArr.length, subtract(+num1, +num2));
     secondDigitsArr.length = 0;
     num1 = firstDigitsArr.join();
-    return (expression.innerText = firstDigitsArr.join());
+    expression.innerText = firstDigitsArr.join();
   } else if (operator == "*") {
     expression.innerText = "";
     firstDigitsArr.splice(0, firstDigitsArr.length, multiply(+num1, +num2));
     secondDigitsArr = [];
     num1 = firstDigitsArr.join();
-    return (expression.innerText = firstDigitsArr.join());
+    expression.innerText = firstDigitsArr.join();
   } else if (operator == "/") {
     expression.innerText = "";
     firstDigitsArr.splice(0, firstDigitsArr.length, divide(+num1, +num2));
     secondDigitsArr = [];
     num1 = firstDigitsArr.join();
-    return (expression.innerText = firstDigitsArr.join());
+    expression.innerText = firstDigitsArr.join();
   } else if (operator == "%") {
     expression.innerText = "";
     firstDigitsArr.splice(0, firstDigitsArr.length, percent(+num1));
     num1 = firstDigitsArr.join();
-    return (expression.innerText = firstDigitsArr.join());
+    expression.innerText = firstDigitsArr.join();
   }
 }
 

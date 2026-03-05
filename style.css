@@ -34,6 +34,7 @@ body, .calc-ui, .rows, .buttons-ui{
     font-size: 35px;
     font-weight: 900;
     text-align: end;
+    overflow: clip;
 }
 .buttons-ui{
     border: 10px solid rgb(99, 70, 70);
