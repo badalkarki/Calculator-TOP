@@ -30,7 +30,7 @@ function getNumber(event) {
     case "0":
       return 0;
     case ".":
-      if (!expression.innerText.includes(".")) return ".";
+      if (!expression.innerText.includes(".")) return "0.";
     default:
       return "";
   }
