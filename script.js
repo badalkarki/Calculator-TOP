@@ -7,6 +7,8 @@ let operator = "";
 //
 function getNumber(event) {
   switch (event) {
+    case "+/-":
+      return "-";
     case "9":
       return 9;
     case "8":
@@ -53,7 +55,6 @@ numberBtns.forEach((numBtn) => {
     operator == ""
       ? displayFirstNumber(e.target.innerText)
       : displaySecondNumber(e.target.innerText);
-    // console.log(num1, typeof num1);
   });
 });
 
@@ -69,12 +70,10 @@ function getOperator(event) {
       return "-";
     case "*":
       return "*";
-    default:
-      return "";
   }
 }
 function displayOperator(sign) {
-  operator = getOperator(sign);
+  operator = num1 == "" ? "" : getOperator(sign);
   console.log("operator is: " + operator);
   expression.innerText = num1 + operator;
 }
@@ -136,7 +135,7 @@ deleteItem();
 
 const equate = document.querySelector(".result");
 equate.addEventListener("click", (e) => {
-    operate();
+  operate();
 });
 
 function operate() {
@@ -146,29 +145,25 @@ function operate() {
     secondDigitsArr = [];
     num1 = firstDigitsArr.join();
     return (expression.innerText = firstDigitsArr.join());
-  }
-   else if (operator =="-") {
+  } else if (operator == "-") {
     expression.innerText = "";
     firstDigitsArr.splice(0, firstDigitsArr.length, subtract(+num1, +num2));
-    secondDigitsArr = [];
+    secondDigitsArr.length = 0;
     num1 = firstDigitsArr.join();
     return (expression.innerText = firstDigitsArr.join());
-  } 
-  else if (operator =="*") {
+  } else if (operator == "*") {
     expression.innerText = "";
     firstDigitsArr.splice(0, firstDigitsArr.length, multiply(+num1, +num2));
     secondDigitsArr = [];
     num1 = firstDigitsArr.join();
     return (expression.innerText = firstDigitsArr.join());
-  } 
-  else if (operator =="/") {
+  } else if (operator == "/") {
     expression.innerText = "";
     firstDigitsArr.splice(0, firstDigitsArr.length, divide(+num1, +num2));
     secondDigitsArr = [];
     num1 = firstDigitsArr.join();
     return (expression.innerText = firstDigitsArr.join());
-  } 
-  else if (operator =="%") {
+  } else if (operator == "%") {
     expression.innerText = "";
     firstDigitsArr.splice(0, firstDigitsArr.length, percent(+num1));
     num1 = firstDigitsArr.join();
@@ -191,3 +186,17 @@ function divide(a, b) {
 function percent(a) {
   return a / 100;
 }
+
+const negativeAtFirst = document.querySelector(".negative-sign");
+negativeAtFirst.addEventListener("click", (e) => {
+  getNumber(e.target.innerText);
+  if (num1 != "" && !num1.includes("-")) {
+    firstDigitsArr.unshift("-");
+    num1 = firstDigitsArr.join("");
+    expression.innerText = num1;
+  } else if (num2 != "") {
+    secondDigitsArr.unshift("-");
+    num2 = secondDigitsArr.join("");
+    expression.innerText = num2;
+  }
+});
