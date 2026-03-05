@@ -38,7 +38,6 @@ function getNumber(event) {
 function displayFirstNumber(number) {
   let num = "";
   expression.innerText.length < 15 ? (num = getNumber(number)) : "";
-
   firstDigitsArr.push(num);
   num1 = firstDigitsArr.join("");
   console.log("num1 is " + num1);
@@ -144,32 +143,25 @@ equate.addEventListener("click", (e) => {
 });
 
 function operate() {
+  expression.innerText = "";
+  secondDigitsArr = [];
   if (operator == "+") {
-    expression.innerText = "";
     firstDigitsArr.splice(0, firstDigitsArr.length, add(+num1, +num2));
-    secondDigitsArr = [];
     num1 = firstDigitsArr.join();
     expression.innerText = firstDigitsArr.join();
   } else if (operator == "-") {
-    expression.innerText = "";
     firstDigitsArr.splice(0, firstDigitsArr.length, subtract(+num1, +num2));
-    secondDigitsArr.length = 0;
     num1 = firstDigitsArr.join();
     expression.innerText = firstDigitsArr.join();
   } else if (operator == "*") {
-    expression.innerText = "";
     firstDigitsArr.splice(0, firstDigitsArr.length, multiply(+num1, +num2));
-    secondDigitsArr = [];
     num1 = firstDigitsArr.join();
     expression.innerText = firstDigitsArr.join();
   } else if (operator == "/") {
-    expression.innerText = "";
     firstDigitsArr.splice(0, firstDigitsArr.length, divide(+num1, +num2));
-    secondDigitsArr = [];
     num1 = firstDigitsArr.join();
     expression.innerText = firstDigitsArr.join();
   } else if (operator == "%") {
-    expression.innerText = "";
     firstDigitsArr.splice(0, firstDigitsArr.length, percent(+num1));
     num1 = firstDigitsArr.join();
     expression.innerText = firstDigitsArr.join();
